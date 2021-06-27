@@ -166,7 +166,7 @@ def get_preprocessing(preprocessing_fn):
 
 if __name__ == '__main__':
     parser  = argparse.ArgumentParser()
-    parser.add_argument("--model_name", type=str,
+    parser.add_argument("--model_path", type=str,
         help='Choose pretrained model to use for inference, default = models/unet_resnet_celeb.pth',
         default='models/unet_resnet_celeb.pth')
     args = parser.parse_args()
@@ -180,7 +180,7 @@ if __name__ == '__main__':
     ENCODER_WEIGHTS = 'imagenet'
     preprocessing_fn = smp.encoders.get_preprocessing_fn(ENCODER, ENCODER_WEIGHTS)
 
-    model = torch.load(args.model_name, map_location=torch.device('cpu'))
+    model = torch.load(args.model_path, map_location=torch.device('cpu'))
 
     CLASSES = ['hair', 'no_hair']
     test_set_la = Dataset(
